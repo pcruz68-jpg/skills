@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Experimento Glass Object do Canvas UI com parâmetros controláveis." />
+    <title>Motion Lab — Spatial &amp; 3D</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script type="importmap">
+      {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"}}
+    </script>
+  </head>
+  <body data-page="spatial-3d">
+    <div class="app-shell">
+      <aside class="primary-rail" aria-label="Navegação principal">
+        <a class="brand" href="index.html" aria-label="Motion Lab — Entrances"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span><strong>Motion Lab</strong><small>HTML · CSS · JS</small></span></a>
+        <nav class="primary-nav">
+          <a href="index.html" data-nav="entrances"><span>01</span> Entrances</a>
+          <a href="component-motion.html" data-nav="component-motion"><span>02</span> Component motion</a>
+          <a href="live-backgrounds.html" data-nav="live-backgrounds"><span>03</span> Live backgrounds</a>
+          <a href="spatial-3d.html" data-nav="spatial-3d"><span>04</span> Spatial &amp; 3D</a>
+        </nav>
+      </aside>
+
+      <main class="workspace catalog-grid">
+        <section class="demo-section" id="glass-object" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Glass object</h2><div class="demo-actions"><button class="control-button" data-glass-toggle>Pause</button><button class="control-button" data-glass-reset>Reset</button></div></header>
+            <div class="demo-stage spatial-stage three-stage glass-object-stage" data-glass-stage>
+              <div class="glass-object-fallback" aria-hidden="true"></div>
+              <canvas id="glass-object-canvas" data-glass-canvas aria-label="Objeto de vidro 3D interativo"></canvas>
+              <span class="three-label">Drag to orbit</span>
+              <p class="three-error" data-glass-error hidden>Fallback visual ativo.</p>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls glass-controls">
+                <label><span>IOR <output>1.75</output></span><input type="range" min="1" max="2.33" step="0.01" value="1.75" data-glass-control="ior" /></label>
+                <label><span>Thickness <output>2.5</output></span><input type="range" min="0.1" max="8" step="0.1" value="2.5" data-glass-control="thickness" /></label>
+                <label><span>Roughness <output>0.12</output></span><input type="range" min="0" max="1" step="0.01" value="0.12" data-glass-control="roughness" /></label>
+                <label><span>Dispersion <output>0.8</output></span><input type="range" min="0" max="2" step="0.05" value="0.8" data-glass-control="dispersion" /></label>
+                <label><span>Clearcoat <output>1</output></span><input type="range" min="0" max="1" step="0.05" value="1" data-glass-control="clearcoat" /></label>
+                <label><span>Tint density <output>0.6</output></span><input type="range" min="0.1" max="5" step="0.1" value="0.6" data-glass-control="tintDensity" /></label>
+                <label><span>Depth <output>0.1</output></span><input type="range" min="0.02" max="0.8" step="0.02" value="0.1" data-glass-control="depth" /></label>
+                <label><span>Bevel <output>1</output></span><input type="range" min="0" max="1" step="0.05" value="1" data-glass-control="bevel" /></label>
+                <label><span>Scale <output>2.7</output></span><input type="range" min="1" max="5" step="0.1" value="2.7" data-glass-control="scale" /></label>
+                <label><span>Float <output>1</output></span><input type="range" min="0" max="2" step="0.05" value="1" data-glass-control="floatIntensity" /></label>
+                <label><span>Rotation <output>1</output></span><input type="range" min="0" max="2" step="0.05" value="1" data-glass-control="rotationIntensity" /></label>
+                <label><span>Speed <output>2</output></span><input type="range" min="0" max="4" step="0.1" value="2" data-glass-control="floatSpeed" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+      </main>
+    </div>
+    <script src="js/settings.js"></script>
+    <script src="js/app.js" defer></script>
+    <script type="module" src="js/glass-object.js"></script>
+  </body>
+</html>

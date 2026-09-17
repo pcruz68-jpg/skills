@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Experimento Cloth do Canvas UI com parâmetros controláveis." />
+    <title>Motion Lab — Component Motion</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="component-motion">
+    <div class="app-shell">
+      <aside class="primary-rail" aria-label="Navegação principal">
+        <a class="brand" href="index.html" aria-label="Motion Lab — Entrances"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span><strong>Motion Lab</strong><small>HTML · CSS · JS</small></span></a>
+        <nav class="primary-nav">
+          <a href="index.html" data-nav="entrances"><span>01</span> Entrances</a>
+          <a href="component-motion.html" data-nav="component-motion"><span>02</span> Component motion</a>
+          <a href="live-backgrounds.html" data-nav="live-backgrounds"><span>03</span> Live backgrounds</a>
+          <a href="spatial-3d.html" data-nav="spatial-3d"><span>04</span> Spatial &amp; 3D</a>
+        </nav>
+      </aside>
+
+      <main class="workspace catalog-grid">
+        <section class="demo-section" id="cloth-flag" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Cloth flag</h2></header>
+            <div class="demo-stage cloth-stage">
+              <span class="flag-pole" aria-hidden="true"></span>
+              <div class="cloth-wrapper" data-cloth-wrapper>
+                <canvas class="cloth-source" data-cloth-source layoutsubtree="true">
+                  <div class="cloth-design" data-cloth-content><span>ML</span><strong>Motion<br />Laboratory</strong><small>Canvas UI / Cloth</small></div>
+                </canvas>
+                <div class="cloth-fallback" aria-hidden="true"><div class="cloth-design"><span>ML</span><strong>Motion<br />Laboratory</strong><small>Canvas UI / Cloth</small></div></div>
+                <canvas class="cloth-output" data-cloth-output aria-hidden="true"></canvas>
+              </div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls cloth-controls">
+                <label><span>Wind <output>1.4</output></span><input type="range" min="0" max="8" step="0.1" value="1.4" data-cloth-control="wind" /></label>
+                <label><span>Speed <output>0.42</output></span><input type="range" min="0" max="2" step="0.01" value="0.42" data-cloth-control="speed" /></label>
+                <label><span>Amplitude <output>18px</output></span><input type="range" min="0" max="80" step="1" value="18" data-cloth-control="amplitude" data-suffix="px" /></label>
+                <label><span>Drape <output>16px</output></span><input type="range" min="0" max="80" step="1" value="16" data-cloth-control="drape" data-suffix="px" /></label>
+                <label><span>Brush <output>1.1</output></span><input type="range" min="0" max="3" step="0.05" value="1.1" data-cloth-control="brush" /></label>
+                <label><span>Brush size <output>95px</output></span><input type="range" min="20" max="240" step="5" value="95" data-cloth-control="brushSize" data-suffix="px" /></label>
+                <label><span>Damping <output>1.65</output></span><input type="range" min="0.05" max="8" step="0.05" value="1.65" data-cloth-control="damping" /></label>
+                <label><span>Light <output>0.58</output></span><input type="range" min="0" max="1" step="0.01" value="0.58" data-cloth-control="light" /></label>
+                <label><span>Sheen <output>0.12</output></span><input type="range" min="0" max="1" step="0.01" value="0.12" data-cloth-control="sheen" /></label>
+                <label><span>Shadow <output>0.28</output></span><input type="range" min="0" max="1" step="0.01" value="0.28" data-cloth-control="shadow" /></label>
+                <label><span>Corner radius <output>8px</output></span><input type="range" min="0" max="40" step="1" value="8" data-cloth-control="cornerRadius" data-suffix="px" /></label>
+                <label><span>Perspective <output>900px</output></span><input type="range" min="200" max="2000" step="25" value="900" data-cloth-control="perspective" data-suffix="px" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="aura-glass-cta" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Glass shimmer CTA</h2></header>
+            <div class="demo-stage aura-cta-stage">
+              <button class="aura-cta" type="button" data-aura-cta>
+                <span class="aura-cta__beam aura-cta__beam--outer" aria-hidden="true"></span>
+                <span class="aura-cta__surface" aria-hidden="true"></span>
+                <span class="aura-cta__content">
+                  <span class="aura-cta__orb" aria-hidden="true"><i></i></span>
+                  <strong>Generate My Site</strong>
+                  <span class="aura-cta__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72"/><path d="m14 7 3 3"/><path d="M5 6v4M19 14v4M10 2v2M7 8H3M21 16h-4M11 3H9"/></svg>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls aura-cta-controls">
+                <label><span>Beam speed <output>4s</output></span><input type="range" min="1" max="10" step="0.1" value="4" data-aura-cta-control="beamSpeed" data-suffix="s" /></label>
+                <label><span>Beam spread <output>90deg</output></span><input type="range" min="15" max="220" step="5" value="90" data-aura-cta-control="spread" data-suffix="deg" /></label>
+                <label><span>Border <output>1px</output></span><input type="range" min="1" max="6" step="0.5" value="1" data-aura-cta-control="cut" data-suffix="px" /></label>
+                <label><span>Glass opacity <output>0.8</output></span><input type="range" min="0.2" max="1" step="0.01" value="0.8" data-aura-cta-control="glassOpacity" /></label>
+                <label><span>Blur <output>8px</output></span><input type="range" min="0" max="24" step="1" value="8" data-aura-cta-control="blur" data-suffix="px" /></label>
+                <label><span>Hover scale <output>1.05</output></span><input type="range" min="1" max="1.15" step="0.01" value="1.05" data-aura-cta-control="hoverScale" /></label>
+                <label><span>Glow size <output>40px</output></span><input type="range" min="0" max="90" step="2" value="40" data-aura-cta-control="glow" data-suffix="px" /></label>
+                <label><span>Magnetic pull <output>8px</output></span><input type="range" min="0" max="24" step="1" value="8" data-aura-cta-control="magnet" data-suffix="px" /></label>
+                <label><span>Orb speed <output>3.2s</output></span><input type="range" min="0.6" max="8" step="0.1" value="3.2" data-aura-cta-control="orbSpeed" data-suffix="s" /></label>
+                <label><span>Orb glow <output>0.65</output></span><input type="range" min="0" max="1" step="0.01" value="0.65" data-aura-cta-control="orbGlow" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="valence-core" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Valence Core WebGL button</h2><div class="demo-actions"><button class="control-button" data-valence-toggle>Pause</button><button class="control-button" data-valence-reset>Replay</button></div></header>
+            <div class="demo-stage valence-stage" data-valence-stage>
+              <button class="valence-button" type="button" data-valence-button>
+                <span class="valence-fallback" aria-hidden="true"></span>
+                <canvas data-valence-canvas aria-hidden="true"></canvas>
+                <span class="valence-label">VALENCE CORE</span>
+              </button>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls valence-controls">
+                <label><span>Idle energy <output>2.4</output></span><input type="range" min="0" max="6" step="0.1" value="2.4" data-valence-control="idleArcs" /></label>
+                <label><span>Hover energy <output>5.8</output></span><input type="range" min="0" max="6" step="0.1" value="5.8" data-valence-control="hoverArcs" /></label>
+                <label><span>Speed <output>1</output></span><input type="range" min="0" max="3" step="0.05" value="1" data-valence-control="speed" /></label>
+                <label><span>Distortion <output>0.11</output></span><input type="range" min="0" max="0.3" step="0.01" value="0.11" data-valence-control="distortion" /></label>
+                <label><span>Glow <output>1</output></span><input type="range" min="0" max="2.5" step="0.05" value="1" data-valence-control="glow" /></label>
+                <label><span>Click flash <output>1</output></span><input type="range" min="0" max="3" step="0.05" value="1" data-valence-control="flash" /></label>
+                <label><span>Corner radius <output>0.14</output></span><input type="range" min="0.02" max="0.3" step="0.01" value="0.14" data-valence-control="radius" /></label>
+                <label><span>Intro <output>1.15s</output></span><input type="range" min="0" max="3" step="0.05" value="1.15" data-valence-control="intro" data-suffix="s" /></label>
+                <label><span>Hue <output>0deg</output></span><input type="range" min="-180" max="180" step="5" value="0" data-valence-control="hue" data-suffix="deg" /></label>
+                <label><span>Shadow <output>15px</output></span><input type="range" min="0" max="50" step="1" value="15" data-valence-control="shadow" data-suffix="px" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="border-glow" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>React Bits Border Glow</h2><div class="demo-actions"><button class="control-button" data-border-glow-replay>Replay</button></div></header>
+            <div class="demo-stage border-glow-stage">
+              <article class="border-glow-card" data-border-glow-card tabindex="0">
+                <span class="border-glow-border" aria-hidden="true"></span>
+                <span class="border-glow-fill" aria-hidden="true"></span>
+                <span class="border-glow-aura" aria-hidden="true"><i></i></span>
+                <div class="border-glow-content"><span>RB / 04</span><strong>Border Glow</strong><small>Move pointer toward an edge</small></div>
+              </article>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls border-glow-controls">
+                <label><span>Edge sensitivity <output>30</output></span><input type="range" min="0" max="80" step="1" value="30" data-border-glow-control="edgeSensitivity" /></label>
+                <label><span>Glow radius <output>40px</output></span><input type="range" min="5" max="90" step="1" value="40" data-border-glow-control="glowRadius" data-suffix="px" /></label>
+                <label><span>Glow intensity <output>1</output></span><input type="range" min="0" max="2" step="0.05" value="1" data-border-glow-control="glowIntensity" /></label>
+                <label><span>Cone spread <output>25%</output></span><input type="range" min="5" max="40" step="1" value="25" data-border-glow-control="coneSpread" data-suffix="%" /></label>
+                <label><span>Border radius <output>28px</output></span><input type="range" min="0" max="60" step="1" value="28" data-border-glow-control="borderRadius" data-suffix="px" /></label>
+                <label><span>Fill opacity <output>0.5</output></span><input type="range" min="0" max="1" step="0.05" value="0.5" data-border-glow-control="fillOpacity" /></label>
+                <label><span>Palette hue <output>0deg</output></span><input type="range" min="-180" max="180" step="5" value="0" data-border-glow-control="paletteHue" data-suffix="deg" /></label>
+                <label><span>Glow hue <output>40deg</output></span><input type="range" min="0" max="360" step="5" value="40" data-border-glow-control="glowHue" data-suffix="deg" /></label>
+                <label><span>Intro sweep <output>On</output></span><input type="range" min="0" max="1" step="1" value="1" data-border-glow-control="animated" /></label>
+                <label><span>Sweep duration <output>4s</output></span><input type="range" min="1" max="8" step="0.1" value="4" data-border-glow-control="sweepDuration" data-suffix="s" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="option-wheel" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>React Bits Option Wheel</h2><div class="demo-actions"><button class="control-button" data-option-wheel-reset>Reset</button></div></header>
+            <div class="demo-stage option-wheel-stage">
+              <div class="option-wheel" data-option-wheel role="listbox" tabindex="0" aria-label="Music style option wheel">
+                <span class="option-wheel-centerline" aria-hidden="true"></span>
+                <button class="option-wheel-item" id="option-wheel-item-0" type="button" role="option" tabindex="-1" data-option-wheel-item>Ambient</button>
+                <button class="option-wheel-item" id="option-wheel-item-1" type="button" role="option" tabindex="-1" data-option-wheel-item>House</button>
+                <button class="option-wheel-item" id="option-wheel-item-2" type="button" role="option" tabindex="-1" data-option-wheel-item>Techno</button>
+                <button class="option-wheel-item" id="option-wheel-item-3" type="button" role="option" tabindex="-1" data-option-wheel-item>Jazz</button>
+                <button class="option-wheel-item" id="option-wheel-item-4" type="button" role="option" tabindex="-1" data-option-wheel-item>Lo-Fi</button>
+                <button class="option-wheel-item" id="option-wheel-item-5" type="button" role="option" tabindex="-1" data-option-wheel-item>Synthwave</button>
+                <button class="option-wheel-item" id="option-wheel-item-6" type="button" role="option" tabindex="-1" data-option-wheel-item>Trance</button>
+                <button class="option-wheel-item" id="option-wheel-item-7" type="button" role="option" tabindex="-1" data-option-wheel-item>Funk</button>
+                <button class="option-wheel-item" id="option-wheel-item-8" type="button" role="option" tabindex="-1" data-option-wheel-item>Disco</button>
+                <button class="option-wheel-item" id="option-wheel-item-9" type="button" role="option" tabindex="-1" data-option-wheel-item>Hip-Hop</button>
+                <button class="option-wheel-item" id="option-wheel-item-10" type="button" role="option" tabindex="-1" data-option-wheel-item>Chillwave</button>
+                <button class="option-wheel-item" id="option-wheel-item-11" type="button" role="option" tabindex="-1" data-option-wheel-item>Drum &amp; Bass</button>
+                <div class="option-wheel-readout" aria-live="polite"><small>Selected</small><strong data-option-wheel-selected>Jazz</strong><span>Scroll · drag · arrow keys</span></div>
+              </div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls option-wheel-controls">
+                <label><span>Font size <output>3rem</output></span><input type="range" min="1" max="4" step="0.1" value="3" data-option-wheel-control="fontSize" data-suffix="rem" /></label>
+                <label><span>Spacing <output>1.4</output></span><input type="range" min="0.7" max="2.4" step="0.1" value="1.4" data-option-wheel-control="spacing" /></label>
+                <label><span>Curve <output>1</output></span><input type="range" min="0" max="2.5" step="0.05" value="1" data-option-wheel-control="curve" /></label>
+                <label><span>Tilt <output>6deg</output></span><input type="range" min="0" max="18" step="0.5" value="6" data-option-wheel-control="tilt" data-suffix="deg" /></label>
+                <label><span>Blur <output>2px</output></span><input type="range" min="0" max="6" step="0.1" value="2" data-option-wheel-control="blur" data-suffix="px" /></label>
+                <label><span>Fade <output>0.25</output></span><input type="range" min="0" max="0.8" step="0.05" value="0.25" data-option-wheel-control="fade" /></label>
+                <label><span>Min opacity <output>0.05</output></span><input type="range" min="0" max="0.5" step="0.05" value="0.05" data-option-wheel-control="minOpacity" /></label>
+                <label><span>Smoothing <output>200ms</output></span><input type="range" min="20" max="800" step="10" value="200" data-option-wheel-control="smoothing" data-suffix="ms" /></label>
+                <label><span>Inset <output>80px</output></span><input type="range" min="20" max="180" step="5" value="80" data-option-wheel-control="inset" data-suffix="px" /></label>
+                <label><span>Side <output>Left</output></span><input type="range" min="0" max="1" step="1" value="0" data-option-wheel-control="side" /></label>
+                <label><span>Loop <output>Off</output></span><input type="range" min="0" max="1" step="1" value="0" data-option-wheel-control="loop" /></label>
+                <label><span>Draggable <output>On</output></span><input type="range" min="0" max="1" step="1" value="1" data-option-wheel-control="draggable" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="js/settings.js"></script>
+    <script src="js/app.js" defer></script>
+    <script type="module" src="js/cloth-flag.js"></script>
+    <script type="module" src="js/aura-glass-cta.js"></script>
+    <script src="js/valence-core.js" defer></script>
+    <script src="js/reactbits-border-glow.js" defer></script>
+    <script src="js/reactbits-option-wheel.js" defer></script>
+  </body>
+</html>

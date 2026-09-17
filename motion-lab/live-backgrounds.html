@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Exemplos de backgrounds vivos com CSS, Canvas e WebGL." />
+    <title>Motion Lab — Live Backgrounds</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-page="live-backgrounds">
+    <div class="app-shell">
+      <aside class="primary-rail" aria-label="Navegação principal">
+        <a class="brand" href="index.html" aria-label="Motion Lab — Entrances"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span><strong>Motion Lab</strong><small>HTML · CSS · JS</small></span></a>
+        <nav class="primary-nav">
+          <a href="index.html" data-nav="entrances"><span>01</span> Entrances</a>
+          <a href="component-motion.html" data-nav="component-motion"><span>02</span> Component motion</a>
+          <a href="live-backgrounds.html" data-nav="live-backgrounds"><span>03</span> Live backgrounds</a>
+          <a href="spatial-3d.html" data-nav="spatial-3d"><span>04</span> Spatial &amp; 3D</a>
+        </nav>
+      </aside>
+
+      <main class="workspace catalog-grid">
+        <section class="demo-section" id="liquid-shader" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Liquid shader</h2><div class="demo-actions"><button class="control-button" data-canvas-toggle="shader-canvas">Pause</button><button class="control-button" data-canvas-reset="shader-canvas">Reset</button></div></header>
+            <div class="demo-stage background-stage shader-stage"><canvas id="shader-canvas" aria-hidden="true"></canvas><div class="background-overlay"><span>Atmosphere / 01</span><h3>Liquid spectrum</h3><p>Time, resolution and pointer as uniforms.</p></div></div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>Speed <output>0.22</output></span><input type="range" min="0" max="0.8" step="0.01" value="0.22" data-live-control="speed" /></label>
+                <label><span>Scale <output>2</output></span><input type="range" min="0.5" max="5" step="0.1" value="2" data-live-control="scale" /></label>
+                <label><span>Wave <output>0.14</output></span><input type="range" min="0" max="0.4" step="0.01" value="0.14" data-live-control="wave" /></label>
+                <label><span>Glow <output>0.13</output></span><input type="range" min="0" max="0.4" step="0.01" value="0.13" data-live-control="glow" /></label>
+                <label><span>Pointer <output>0.12</output></span><input type="range" min="0" max="0.5" step="0.01" value="0.12" data-live-control="pointer" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="blaze" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Blaze</h2><div class="demo-actions"><button class="control-button" data-blaze-toggle>Pause</button><button class="control-button" data-blaze-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage blaze-stage" data-blaze-stage>
+              <div class="blaze-capture" data-blaze-content aria-hidden="true"></div>
+              <canvas class="blaze-source" data-blaze-source layoutsubtree="true" aria-hidden="true"></canvas>
+              <div class="blaze-fallback" aria-hidden="true"></div>
+              <canvas class="blaze-output" data-blaze-output aria-hidden="true"></canvas>
+              <div class="background-overlay"><span>Atmosphere / 02</span><h3>Blaze field</h3><p>Canvas UI / Blaze</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>Height <output>0.97</output></span><input type="range" min="0.1" max="1" step="0.01" value="0.97" data-blaze-control="height" /></label>
+                <label><span>Distortion <output>0.6</output></span><input type="range" min="0" max="2" step="0.05" value="0.6" data-blaze-control="distortion" /></label>
+                <label><span>Ripple scale <output>0.5</output></span><input type="range" min="0.05" max="3" step="0.05" value="0.5" data-blaze-control="distortionScale" /></label>
+                <label><span>Speed <output>1</output></span><input type="range" min="0" max="3" step="0.05" value="1" data-blaze-control="speed" /></label>
+                <label><span>Sparks <output>0.5</output></span><input type="range" min="0" max="2" step="0.05" value="0.5" data-blaze-control="sparks" /></label>
+                <label><span>Spark density <output>1.5</output></span><input type="range" min="0.1" max="4" step="0.1" value="1.5" data-blaze-control="sparkDensity" /></label>
+                <label><span>Spark size <output>1</output></span><input type="range" min="0.1" max="3" step="0.1" value="1" data-blaze-control="sparkSize" /></label>
+                <label><span>Layers <output>4</output></span><input type="range" min="1" max="10" step="1" value="4" data-blaze-control="layers" /></label>
+                <label><span>Smoke <output>0.5</output></span><input type="range" min="0" max="2" step="0.05" value="0.5" data-blaze-control="smoke" /></label>
+                <label><span>Glow <output>1.5</output></span><input type="range" min="0" max="3" step="0.05" value="1.5" data-blaze-control="glow" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="droplets" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Droplets</h2><div class="demo-actions"><button class="control-button" data-droplets-toggle>Pause</button><button class="control-button" data-droplets-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage droplets-stage" data-droplets-stage>
+              <div class="droplets-capture" data-droplets-content aria-hidden="true"></div>
+              <canvas class="droplets-source" data-droplets-source data-canvasui-prepainted="true" aria-hidden="true"></canvas>
+              <div class="droplets-fallback" aria-hidden="true"></div>
+              <canvas class="droplets-output" data-droplets-output aria-hidden="true"></canvas>
+              <div class="background-overlay"><span>Atmosphere / 03</span><h3>After the rain</h3><p>Canvas UI / Droplets · move the pointer across the glass</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>Intensity <output>0.78</output></span><input type="range" min="0" max="1.25" step="0.01" value="0.78" data-droplets-control="intensity" /></label>
+                <label><span>Speed <output>0.72</output></span><input type="range" min="0" max="2" step="0.01" value="0.72" data-droplets-control="speed" /></label>
+                <label><span>Scale <output>0.62</output></span><input type="range" min="0.1" max="1.5" step="0.01" value="0.62" data-droplets-control="scale" /></label>
+                <label><span>Drop width <output>0.95</output></span><input type="range" min="0.2" max="2" step="0.01" value="0.95" data-droplets-control="dropWidth" /></label>
+                <label><span>Drop length <output>1.25</output></span><input type="range" min="0.2" max="3" step="0.01" value="1.25" data-droplets-control="dropLength" /></label>
+                <label><span>Refraction <output>0.35</output></span><input type="range" min="0" max="1" step="0.01" value="0.35" data-droplets-control="refraction" /></label>
+                <label><span>Blur <output>1.2</output></span><input type="range" min="0" max="8" step="0.1" value="1.2" data-droplets-control="blur" /></label>
+                <label><span>Vignette <output>0.3</output></span><input type="range" min="0" max="1" step="0.01" value="0.3" data-droplets-control="vignette" /></label>
+                <label><span>Fall speed <output>0.8</output></span><input type="range" min="0" max="3" step="0.01" value="0.8" data-droplets-control="fallSpeed" /></label>
+                <label><span>Wiggle <output>0.55</output></span><input type="range" min="0" max="3" step="0.01" value="0.55" data-droplets-control="wiggle" /></label>
+                <label><span>Static drops <output>0.45</output></span><input type="range" min="0" max="2" step="0.01" value="0.45" data-droplets-control="staticDrops" /></label>
+                <label><span>Wipe radius <output>0.16</output></span><input type="range" min="0.02" max="0.6" step="0.01" value="0.16" data-droplets-control="interactionRadius" /></label>
+                <label><span>Wipe strength <output>0.86</output></span><input type="range" min="0" max="1" step="0.01" value="0.86" data-droplets-control="interactionStrength" /></label>
+                <label><span>Wipe distortion <output>3.5</output></span><input type="range" min="0" max="8" step="0.1" value="3.5" data-droplets-control="interactionDistortion" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="frost" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Frost</h2><div class="demo-actions"><button class="control-button" data-frost-toggle>Pause</button><button class="control-button" data-frost-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage frost-stage" data-frost-stage>
+              <div class="frost-capture" data-frost-content aria-hidden="true"></div>
+              <canvas class="frost-source" data-frost-source data-canvasui-prepainted="true" aria-hidden="true"></canvas>
+              <div class="frost-fallback" aria-hidden="true"></div>
+              <canvas class="frost-output" data-frost-output aria-hidden="true"></canvas>
+              <div class="background-overlay"><span>Atmosphere / 04</span><h3>Frozen pane</h3><p>Canvas UI / Frost · move the pointer to melt the ice</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>Base frost <output>0.62</output></span><input type="range" min="0" max="1" step="0.01" value="0.62" data-frost-control="frost" /></label>
+                <label><span>Strength <output>1.35</output></span><input type="range" min="0" max="2" step="0.01" value="1.35" data-frost-control="strength" /></label>
+                <label><span>Contrast <output>4</output></span><input type="range" min="0.5" max="8" step="0.1" value="4" data-frost-control="contrast" /></label>
+                <label><span>Crispness <output>2</output></span><input type="range" min="0.1" max="5" step="0.1" value="2" data-frost-control="crispness" /></label>
+                <label><span>Highlights <output>0.58</output></span><input type="range" min="0" max="1" step="0.01" value="0.58" data-frost-control="highlight" /></label>
+                <label><span>Haze <output>0.9</output></span><input type="range" min="0" max="1" step="0.01" value="0.9" data-frost-control="haze" /></label>
+                <label><span>Tint <output>0.75</output></span><input type="range" min="0" max="1" step="0.01" value="0.75" data-frost-control="tintStrength" /></label>
+                <label><span>Saturation <output>0.65</output></span><input type="range" min="0" max="2" step="0.01" value="0.65" data-frost-control="saturation" /></label>
+                <label><span>Brightness <output>1.08</output></span><input type="range" min="0.2" max="2" step="0.01" value="1.08" data-frost-control="brightness" /></label>
+                <label><span>Refraction <output>1</output></span><input type="range" min="0" max="3" step="0.01" value="1" data-frost-control="refraction" /></label>
+                <label><span>IOR <output>1.31</output></span><input type="range" min="1.01" max="2.5" step="0.01" value="1.31" data-frost-control="ior" /></label>
+                <label><span>Surface detail <output>2.2</output></span><input type="range" min="0" max="5" step="0.1" value="2.2" data-frost-control="detail" /></label>
+                <label><span>Texture scale <output>1.8</output></span><input type="range" min="0.25" max="5" step="0.05" value="1.8" data-frost-control="textureScale" /></label>
+                <label><span>Fresnel <output>1.15</output></span><input type="range" min="0" max="2" step="0.01" value="1.15" data-frost-control="fresnel" /></label>
+                <label><span>Melt radius <output>0.22</output></span><input type="range" min="0.02" max="0.7" step="0.01" value="0.22" data-frost-control="meltRadius" /></label>
+                <label><span>Melt noise <output>0.35</output></span><input type="range" min="0" max="1" step="0.01" value="0.35" data-frost-control="meltNoise" /></label>
+                <label><span>Melt strength <output>0.8</output></span><input type="range" min="0" max="1" step="0.01" value="0.8" data-frost-control="meltStrength" /></label>
+                <label><span>Refreeze <output>1.2</output></span><input type="range" min="0" max="5" step="0.1" value="1.2" data-frost-control="refreeze" /></label>
+                <label><span>Opacity <output>1</output></span><input type="range" min="0" max="1" step="0.01" value="1" data-frost-control="opacity" /></label>
+                <label><span>Shimmer <output>0.28</output></span><input type="range" min="0" max="1" step="0.01" value="0.28" data-frost-control="shimmer" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="unicorn-matrix" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Matrix — Unicorn Studio</h2><div class="demo-actions"><button class="control-button" data-unicorn-toggle>Pause</button><button class="control-button" data-unicorn-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage unicorn-stage" data-unicorn-stage data-unicorn-effect="unicorn-matrix" data-unicorn-project="1bY8o6HVTI1oxJxuCJEG" data-unicorn-alt="Dark teal interactive Matrix atmosphere">
+              <div class="unicorn-fallback" aria-hidden="true"></div>
+              <div id="unicorn-matrix-scene" class="unicorn-scene" data-unicorn-scene aria-hidden="true"></div>
+              <div class="background-overlay"><span>Atmosphere / 05</span><h3>Matrix current</h3><p>Aura C57A1CA / Unicorn Studio · move the pointer</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>FPS <output>45</output></span><input type="range" min="15" max="60" step="5" value="45" data-unicorn-control="fps" /></label>
+                <label><span>Render scale <output>0.75</output></span><input type="range" min="0.25" max="1" step="0.05" value="0.75" data-unicorn-control="scale" /></label>
+                <label><span>DPI <output>1</output></span><input type="range" min="0.5" max="2" step="0.1" value="1" data-unicorn-control="dpi" /></label>
+                <label><span>Opacity <output>1</output></span><input type="range" min="0.2" max="1" step="0.05" value="1" data-unicorn-control="opacity" /></label>
+                <label><span>Saturation <output>1</output></span><input type="range" min="0" max="2" step="0.05" value="1" data-unicorn-control="saturation" /></label>
+                <label><span>Blur <output>0px</output></span><input type="range" min="0" max="12" step="0.5" value="0" data-unicorn-control="blur" data-suffix="px" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="aura-laser" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Aura laser — Unicorn Studio</h2><div class="demo-actions"><button class="control-button" data-unicorn-toggle>Pause</button><button class="control-button" data-unicorn-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage unicorn-stage aura-laser-stage" data-unicorn-stage data-unicorn-effect="aura-laser" data-unicorn-project="ZHhDKfVqqu8PKOSMwfuA" data-unicorn-alt="Warm interactive laser aura">
+              <div class="unicorn-fallback aura-laser-fallback" aria-hidden="true"></div>
+              <div id="unicorn-aura-laser-scene" class="unicorn-scene" data-unicorn-scene aria-hidden="true"></div>
+              <div class="background-overlay"><span>Atmosphere / 06</span><h3>Aura laser</h3><p>Aura D92CFE3 / Unicorn Studio · move the pointer</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>FPS <output>45</output></span><input type="range" min="15" max="60" step="5" value="45" data-unicorn-control="fps" /></label>
+                <label><span>Render scale <output>0.75</output></span><input type="range" min="0.25" max="1" step="0.05" value="0.75" data-unicorn-control="scale" /></label>
+                <label><span>DPI <output>1</output></span><input type="range" min="0.5" max="2" step="0.1" value="1" data-unicorn-control="dpi" /></label>
+                <label><span>Brightness <output>1</output></span><input type="range" min="0.4" max="2" step="0.05" value="1" data-unicorn-control="brightness" /></label>
+                <label><span>Hue <output>0deg</output></span><input type="range" min="-180" max="180" step="5" value="0" data-unicorn-control="hue" data-suffix="deg" /></label>
+                <label><span>Blur <output>0px</output></span><input type="range" min="0" max="12" step="0.5" value="0" data-unicorn-control="blur" data-suffix="px" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="gradient-field" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Gradient field — Unicorn Studio</h2><div class="demo-actions"><button class="control-button" data-unicorn-toggle>Pause</button><button class="control-button" data-unicorn-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage unicorn-stage gradient-field-stage" data-unicorn-stage data-unicorn-effect="gradient-field" data-unicorn-project="BhoqrigscYbD7NN1fwcp" data-unicorn-alt="Interactive blue and purple gradient field">
+              <div class="unicorn-fallback gradient-field-fallback" aria-hidden="true"></div>
+              <div id="unicorn-gradient-field-scene" class="unicorn-scene" data-unicorn-scene aria-hidden="true"></div>
+              <div class="background-overlay"><span>Atmosphere / 07</span><h3>Gradient field</h3><p>Aura 83B363C / Unicorn Studio · move the pointer</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>FPS <output>45</output></span><input type="range" min="15" max="60" step="5" value="45" data-unicorn-control="fps" /></label>
+                <label><span>Render scale <output>0.75</output></span><input type="range" min="0.25" max="1" step="0.05" value="0.75" data-unicorn-control="scale" /></label>
+                <label><span>DPI <output>1</output></span><input type="range" min="0.5" max="2" step="0.1" value="1" data-unicorn-control="dpi" /></label>
+                <label><span>Brightness <output>1</output></span><input type="range" min="0.4" max="2" step="0.05" value="1" data-unicorn-control="brightness" /></label>
+                <label><span>Saturation <output>1</output></span><input type="range" min="0" max="2" step="0.05" value="1" data-unicorn-control="saturation" /></label>
+                <label><span>Hue <output>0deg</output></span><input type="range" min="-180" max="180" step="5" value="0" data-unicorn-control="hue" data-suffix="deg" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="masked-matrix" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Masked Matrix — Unicorn Studio</h2><div class="demo-actions"><button class="control-button" data-unicorn-toggle>Pause</button><button class="control-button" data-unicorn-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage unicorn-stage masked-matrix-stage" data-unicorn-stage data-unicorn-effect="masked-matrix" data-unicorn-project="XxCmD31vVBmiINgvYCho" data-unicorn-alt="Interactive blue Matrix atmosphere with a bottom fade">
+              <div class="unicorn-fallback masked-matrix-fallback" aria-hidden="true"></div>
+              <div id="unicorn-masked-matrix-scene" class="unicorn-scene" data-unicorn-scene aria-hidden="true"></div>
+              <div class="background-overlay"><span>Atmosphere / 08</span><h3>Masked Matrix</h3><p>Aura 8E9C3 / Unicorn Studio · move the pointer</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>FPS <output>45</output></span><input type="range" min="15" max="60" step="5" value="45" data-unicorn-control="fps" /></label>
+                <label><span>Render scale <output>0.75</output></span><input type="range" min="0.25" max="1" step="0.05" value="0.75" data-unicorn-control="scale" /></label>
+                <label><span>DPI <output>1</output></span><input type="range" min="0.5" max="2" step="0.1" value="1" data-unicorn-control="dpi" /></label>
+                <label><span>Fade start <output>80%</output></span><input type="range" min="35" max="100" step="1" value="80" data-unicorn-control="maskStart" data-suffix="%" /></label>
+                <label><span>Brightness <output>1</output></span><input type="range" min="0.4" max="2" step="0.05" value="1" data-unicorn-control="brightness" /></label>
+                <label><span>Saturation <output>1</output></span><input type="range" min="0" max="2" step="0.05" value="1" data-unicorn-control="saturation" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="glass-wave" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>Glass wave — Spline</h2><div class="demo-actions"><button class="control-button" data-spline-toggle>Pause</button><button class="control-button" data-spline-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage spline-stage" data-spline-stage data-spline-effect="glass-wave" data-spline-src="https://my.spline.design/glasswave-6HLEnvJfCRsq1aKT2xqlgme7">
+              <div class="spline-fallback" aria-hidden="true"></div>
+              <div class="spline-frame" data-spline-frame></div>
+              <div class="background-overlay"><span>Atmosphere / 09</span><h3>Glass wave</h3><p>Aura A69878E / Spline · move the pointer</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>Opacity <output>1</output></span><input type="range" min="0.2" max="1" step="0.05" value="1" data-spline-control="opacity" /></label>
+                <label><span>Zoom <output>1.04</output></span><input type="range" min="0.8" max="1.4" step="0.01" value="1.04" data-spline-control="zoom" /></label>
+                <label><span>Vertical <output>0%</output></span><input type="range" min="-30" max="30" step="1" value="0" data-spline-control="vertical" data-suffix="%" /></label>
+                <label><span>Brightness <output>1</output></span><input type="range" min="0.4" max="2" step="0.05" value="1" data-spline-control="brightness" /></label>
+                <label><span>Saturation <output>1</output></span><input type="range" min="0" max="2" step="0.05" value="1" data-spline-control="saturation" /></label>
+                <label><span>Hue <output>0deg</output></span><input type="range" min="-180" max="180" step="5" value="0" data-spline-control="hue" data-suffix="deg" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="reactbits-aurora" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>React Bits Aurora</h2><div class="demo-actions"><button class="control-button" data-aurora-toggle>Pause</button><button class="control-button" data-aurora-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage reactbits-aurora-stage" data-aurora-stage>
+              <div class="reactbits-aurora-fallback" aria-hidden="true"></div>
+              <canvas data-aurora-canvas aria-hidden="true"></canvas>
+              <div class="background-overlay"><span>Atmosphere / 10</span><h3>Aurora</h3><p>React Bits · vanilla WebGL2</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>Speed <output>1</output></span><input type="range" min="0" max="3" step="0.05" value="1" data-aurora-control="speed" /></label>
+                <label><span>Amplitude <output>1</output></span><input type="range" min="0" max="3" step="0.05" value="1" data-aurora-control="amplitude" /></label>
+                <label><span>Blend <output>0.5</output></span><input type="range" min="0.01" max="1" step="0.01" value="0.5" data-aurora-control="blend" /></label>
+                <label><span>Opacity <output>1</output></span><input type="range" min="0" max="1" step="0.05" value="1" data-aurora-control="opacity" /></label>
+                <label><span>Hue <output>0deg</output></span><input type="range" min="-180" max="180" step="5" value="0" data-aurora-control="hue" data-suffix="deg" /></label>
+                <label><span>Saturation <output>1</output></span><input type="range" min="0" max="2" step="0.05" value="1" data-aurora-control="saturation" /></label>
+                <label><span>Brightness <output>1</output></span><input type="range" min="0.4" max="2" step="0.05" value="1" data-aurora-control="brightness" /></label>
+                <label><span>Quality <output>1</output></span><input type="range" min="0.5" max="2" step="0.25" value="1" data-aurora-control="quality" /></label>
+                <label><span>Light mode <output>Off</output></span><input type="range" min="0" max="1" step="1" value="0" data-aurora-control="lightMode" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="floating-lines" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>React Bits Floating Lines</h2><div class="demo-actions"><button class="control-button" data-floating-lines-toggle>Pause</button><button class="control-button" data-floating-lines-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage floating-lines-stage" data-floating-lines-stage>
+              <div class="floating-lines-fallback" aria-hidden="true"></div>
+              <canvas data-floating-lines-canvas aria-hidden="true"></canvas>
+              <div class="background-overlay"><span>Atmosphere / 11</span><h3>Floating Lines</h3><p>React Bits · vanilla WebGL2 · move the pointer</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>Speed <output>1</output></span><input type="range" min="0" max="3" step="0.05" value="1" data-floating-lines-control="speed" /></label>
+                <label><span>Top lines <output>6</output></span><input type="range" min="0" max="20" step="1" value="6" data-floating-lines-control="topLines" /></label>
+                <label><span>Middle lines <output>8</output></span><input type="range" min="0" max="20" step="1" value="8" data-floating-lines-control="middleLines" /></label>
+                <label><span>Bottom lines <output>10</output></span><input type="range" min="0" max="20" step="1" value="10" data-floating-lines-control="bottomLines" /></label>
+                <label><span>Line spacing <output>5</output></span><input type="range" min="0.5" max="12" step="0.5" value="5" data-floating-lines-control="distance" /></label>
+                <label><span>Bend radius <output>5</output></span><input type="range" min="0.5" max="15" step="0.25" value="5" data-floating-lines-control="bendRadius" /></label>
+                <label><span>Bend strength <output>-0.5</output></span><input type="range" min="-2" max="2" step="0.05" value="-0.5" data-floating-lines-control="bendStrength" /></label>
+                <label><span>Mouse damping <output>0.05</output></span><input type="range" min="0.01" max="0.3" step="0.01" value="0.05" data-floating-lines-control="damping" /></label>
+                <label><span>Parallax <output>0.2</output></span><input type="range" min="0" max="0.8" step="0.05" value="0.2" data-floating-lines-control="parallax" /></label>
+                <label><span>Opacity <output>1</output></span><input type="range" min="0" max="1" step="0.05" value="1" data-floating-lines-control="opacity" /></label>
+                <label><span>Hue <output>0deg</output></span><input type="range" min="-180" max="180" step="5" value="0" data-floating-lines-control="hue" data-suffix="deg" /></label>
+                <label><span>Light mode <output>Off</output></span><input type="range" min="0" max="1" step="1" value="0" data-floating-lines-control="lightMode" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section class="demo-section" id="light-pillar" data-section>
+          <div class="demo-card">
+            <header class="demo-card-bar"><h2>React Bits Light Pillar</h2><div class="demo-actions"><button class="control-button" data-light-pillar-toggle>Pause</button><button class="control-button" data-light-pillar-reset>Reset</button></div></header>
+            <div class="demo-stage background-stage light-pillar-stage" data-light-pillar-stage>
+              <div class="light-pillar-fallback" aria-hidden="true"></div>
+              <canvas data-light-pillar-canvas aria-hidden="true"></canvas>
+              <div class="background-overlay"><span>Atmosphere / 12</span><h3>Light Pillar</h3><p>React Bits · vanilla WebGL2 · move the pointer</p></div>
+            </div>
+            <details class="parameter-panel">
+              <summary>Parameters</summary>
+              <div class="motion-controls live-controls">
+                <label><span>Rotation speed <output>0.3</output></span><input type="range" min="0" max="2" step="0.05" value="0.3" data-light-pillar-control="rotationSpeed" /></label>
+                <label><span>Intensity <output>1</output></span><input type="range" min="0.1" max="2.5" step="0.05" value="1" data-light-pillar-control="intensity" /></label>
+                <label><span>Glow <output>0.005</output></span><input type="range" min="0.001" max="0.02" step="0.001" value="0.005" data-light-pillar-control="glow" /></label>
+                <label><span>Pillar width <output>3</output></span><input type="range" min="0.5" max="8" step="0.1" value="3" data-light-pillar-control="width" /></label>
+                <label><span>Pillar height <output>0.4</output></span><input type="range" min="0.1" max="1.5" step="0.05" value="0.4" data-light-pillar-control="height" /></label>
+                <label><span>Noise <output>0.5</output></span><input type="range" min="0" max="2" step="0.05" value="0.5" data-light-pillar-control="noise" /></label>
+                <label><span>Pillar rotation <output>0deg</output></span><input type="range" min="-90" max="90" step="1" value="0" data-light-pillar-control="pillarRotation" data-suffix="deg" /></label>
+                <label><span>Palette shift <output>0deg</output></span><input type="range" min="-180" max="180" step="5" value="0" data-light-pillar-control="palette" data-suffix="deg" /></label>
+                <label><span>Opacity <output>1</output></span><input type="range" min="0" max="1" step="0.05" value="1" data-light-pillar-control="opacity" /></label>
+                <label><span>Interaction <output>On</output></span><input type="range" min="0" max="1" step="1" value="1" data-light-pillar-control="interactive" /></label>
+                <label><span>Quality <output>High</output></span><input type="range" min="0" max="2" step="1" value="2" data-light-pillar-control="quality" /></label>
+              </div>
+            </details>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="js/settings.js"></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/live-backgrounds.js" defer></script>
+    <script type="module" src="js/blaze-background.js"></script>
+    <script type="module" src="js/droplets-background.js"></script>
+    <script type="module" src="js/frost-background.js"></script>
+    <script src="js/unicorn-backgrounds.js" defer></script>
+    <script src="js/spline-background.js" defer></script>
+    <script src="js/reactbits-aurora.js" defer></script>
+    <script src="js/reactbits-floating-lines.js" defer></script>
+    <script src="js/reactbits-light-pillar.js" defer></script>
+  </body>
+</html>

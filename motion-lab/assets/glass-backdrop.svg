@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#10192e"/>
+      <stop offset=".48" stop-color="#2c2051"/>
+      <stop offset="1" stop-color="#0b292b"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#c7ff4a"/>
+      <stop offset=".48" stop-color="#58e4ff"/>
+      <stop offset="1" stop-color="#9d7cff"/>
+    </linearGradient>
+    <radialGradient id="halo">
+      <stop stop-color="#ffffff" stop-opacity=".75"/>
+      <stop offset=".28" stop-color="#58e4ff" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#9d7cff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse">
+      <path d="M64 0H0V64" fill="none" stroke="#e6ffdf" stroke-opacity=".12"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <circle cx="600" cy="390" r="330" fill="url(#halo)"/>
+  <path d="M-100 590C220 350 420 700 720 430s440-60 610-230" fill="none" stroke="url(#beam)" stroke-width="96" stroke-linecap="round" opacity=".92"/>
+  <path d="M570-50h110v900H570z" fill="#f4f6ee" opacity=".22"/>
+  <circle cx="250" cy="190" r="82" fill="#c7ff4a" opacity=".78"/>
+  <circle cx="980" cy="180" r="52" fill="#58e4ff" opacity=".9"/>
+  <circle cx="960" cy="640" r="116" fill="#9d7cff" opacity=".72"/>
+  <path d="M820 610h250M945 485v250" stroke="#f4f6ee" stroke-width="10" stroke-linecap="round" opacity=".8"/>
+</svg>
