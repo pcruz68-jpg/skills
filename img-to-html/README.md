@@ -65,7 +65,7 @@ Em cada gate: mostra o resultado, pergunta, **para**. Só avança com “aprovad
 | 4 | Ícones, imagens de conteúdo, avatares (omitir se o plano disser) | assets na composição |
 | 5 | Screenshot tela cheia vs referência; integração | entrega final |
 
-Assets de fundo vão na etapa 2 ou 3 (pela função). Independentes geram em lote paralelo via `openrouter-img` (`gpt2`, 1K).
+Assets de fundo vão na etapa 2 ou 3 (pela função). O padrão é recortar da referência com `scripts/imgtool.py`; regenerar via `openrouter-img` só quando o crop não serve (resolução, transparência, sobreposição).
 
 ---
 

@@ -152,7 +152,8 @@ Meta: cada superfície **indistinguível** da referência. Iterar medindo, não 
 Fluxo por superfície (nav primeiro, depois card a card):
 
 1. Crop da referência (ou lab side-by-side no browser).
-2. Amostrar pixels (fill, rim TL/BR, texto, meta).
+2. Amostrar pixels (fill, rim TL/BR, texto, meta) com `imgtool.py sample` — ler o hex exato evita
+   a deriva de estimar cor no olho, que é a causa mais comum de superfície "quase igual".
 3. Escrever o markup no `index.html` e a classe em `assets/styles.css`; valores reutilizados viram custom property no `:root`.
 4. Screenshot recreate vs crop; ajustar até bater.
 
@@ -166,18 +167,59 @@ Implementar os `[ico:]` / `[img:]` / `[av:]` e demais assets que o plano deixou 
 
 ### Procedimento de assets (usado nas etapas 2, 3 e 4)
 
-1. Fazer todos os crops necessários na `reference` → `assets/crops/{id}.png` antes de iniciar qualquer geração.
-2. Separar os requests em lotes: assets sem dependência entre si e com arquivos de destino distintos pertencem ao mesmo lote. Um asset que depende de uma imagem recém-gerada, ou de uma composição ainda não aprovada, fica no lote seguinte.
-3. Regenerar cada lote com **GPT Image 2** via OpenRouter (`gpt2`) em paralelo. Para ícones ou camadas recortadas, pedir PNG com **fundo transparente**; para um fundo completo, preservar o fundo necessário. Adaptar o prompt à arte (foto, textura, 3D etc.); não impor estilo flat a todo asset. Inicie cada comando em segundo plano e execute `wait` antes de encaixar qualquer resultado. Exemplo para dois ícones independentes:
+O recorte da referência **é** a imagem original — nenhuma regeneração chega mais perto dela. Por isso o
+crop é o caminho padrão e a regeneração é o escape para os casos em que o crop não serve. Regenerar por
+hábito só introduz deriva: o modelo redesenha o ícone e você perde exatamente a fidelidade que veio buscar.
+
+#### 1. Medir e recortar
+
+Descobrir as dimensões da referência e recortar cada asset para `assets/crops/{id}.png`:
 
 ```bash
-uv run ~/.agents/skills/openrouter-img/scripts/generate_image.py \
+T=~/.agents/skills/img-to-html/scripts/imgtool.py
+uv run $T info design-systems/<slug>/reference.png
+
+# --box aceita frações 0..1 da imagem (mais estável quando você está estimando pela proporção)
+# ou pixels absolutos (quando já mediu). --scale amplia com LANCZOS.
+uv run $T crop design-systems/<slug>/reference.png \
+  --box 0.04,0.03,0.06,0.04 --out design-systems/<slug>/assets/crops/logo.png --scale 3
+```
+
+Ampliar o crop (`--scale 2`/`3`) na hora de recortar resolve a maioria dos casos de ícone pequeno: o
+navegador reduz de volta e a borda fica limpa, em vez de escalar um PNG de 24px.
+
+#### 2. Encaixar e comparar
+
+Usar o crop direto: `<img src="assets/crops/{id}.png">` ou `background-image`. Comparar na composição da
+etapa que o utiliza — o gate é o dessa etapa, sem aprovação extra por arquivo.
+
+#### 3. Regenerar apenas com motivo
+
+Só vale trocar o crop por um asset gerado quando ele falha por uma razão concreta:
+
+- a resolução do mock é insuficiente para o tamanho de exibição, mesmo com `--scale`;
+- o asset precisa de **fundo transparente** e o crop trouxe o fundo colorido junto;
+- há elementos sobrepostos no crop (texto por cima do ícone, sombra de outro card) que precisam sair.
+
+Fora desses casos, mantenha o crop. Se nenhum asset tiver motivo, esta etapa é só encaixar e comparar.
+
+#### 4. Regeneração (opcional, requer `OPENROUTER_API_KEY`)
+
+Separar os requests em lotes: assets sem dependência entre si e com arquivos de destino distintos vão no
+mesmo lote. Um asset que depende de uma imagem recém-gerada, ou de uma composição ainda não aprovada, fica
+no lote seguinte. Regenerar cada lote com **GPT Image 2** via OpenRouter (`gpt2`) em paralelo, adaptando o
+prompt à arte (foto, textura, 3D etc.) em vez de impor estilo flat a todo asset. Iniciar cada comando em
+segundo plano e executar `wait` antes de encaixar qualquer resultado:
+
+```bash
+G=~/.agents/skills/openrouter-img/scripts/generate_image.py
+uv run $G \
   --prompt "Recreate this UI icon/asset exactly. Flat, clean edges. Transparent background. No extra padding, no mockup frame." \
   --input-image design-systems/<slug>/assets/crops/{id}.png \
   --filename design-systems/<slug>/assets/{id}.png \
   --model gpt2 --resolution 1K --aspect-ratio 1:1 &
 
-uv run ~/.agents/skills/openrouter-img/scripts/generate_image.py \
+uv run $G \
   --prompt "Recreate this UI icon/asset exactly. Flat, clean edges. Transparent background. No extra padding, no mockup frame." \
   --input-image design-systems/<slug>/assets/crops/{id-2}.png \
   --filename design-systems/<slug>/assets/{id-2}.png \
@@ -186,11 +228,10 @@ uv run ~/.agents/skills/openrouter-img/scripts/generate_image.py \
 wait
 ```
 
-Rodar a partir do cwd do repo de skills (ou paths absolutos). Para um único asset, rode o mesmo comando sem `&` e sem `wait`. Ajustar `--aspect-ratio` ao crop ou à camada de destino. Ao gerar um fundo a partir do mock, pedir apenas a arte de fundo, sem reproduzir textos, cards ou controles sobrepostos. Requer `OPENROUTER_API_KEY` (`.env` do projeto ou `~/.env`).
-
-4. Depois do `wait`, encaixar cada resultado no HTML via `<img src="assets/{id}.png">` (ou `background-image`) e comparar com a ref.
-5. Se algum falhou: preparar somente os assets afetados para um novo lote, com prompt ajustado; não regenerar os que já passaram.
-6. Avaliar os assets na composição da etapa que os utiliza; o gate é o dessa etapa, sem uma aprovação extra por arquivo.
+Ajustar `--aspect-ratio` ao crop ou à camada de destino. Ao gerar um fundo a partir do mock, pedir apenas a
+arte de fundo, sem reproduzir textos, cards ou controles sobrepostos. Se um asset falhou, preparar só os
+afetados para um novo lote com prompt ajustado; não regenerar os que já passaram. Sem a chave configurada,
+avise e siga com o crop.
 
 ---
 
@@ -211,6 +252,7 @@ Rodar a partir do cwd do repo de skills (ou paths absolutos). Para um único ass
 - Inventar textos ilegíveis no wireframe.
 - Desenhar caixa de componente sem label de região, ou achatar cards-filho em texto solto dentro do pai.
 - Marcar nav ativo como `[lnk:]` (use `[btn:]` / variante).
-- Tratar ícones/imagens com Lucide/placeholder "parecido" quando o plano pede asset gerado da ref.
+- Tratar ícones/imagens com Lucide/placeholder "parecido" quando o plano pede asset vindo da ref.
+- Regenerar um asset por hábito, sem um dos motivos listados no procedimento — o crop é a referência.
 - Escrever CSS inline (`<style>` no HTML ou `style="…"` no elemento) — todo estilo vai para `assets/styles.css`.
 - Criar `package.json`, bundler, framework ou espalhar arquivos fora de `assets/`.
